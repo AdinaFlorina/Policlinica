@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Policlinica", "WebApplication1\Policlinica.csproj", "{7C575BD1-49B8-44E4-BD6D-650C12B6D764}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticDetails", "StaticDetails\StaticDetails.csproj", "{A0F4DD3B-A36D-48AB-938B-E93F7506AD52}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C575BD1-49B8-44E4-BD6D-650C12B6D764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C575BD1-49B8-44E4-BD6D-650C12B6D764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C575BD1-49B8-44E4-BD6D-650C12B6D764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C575BD1-49B8-44E4-BD6D-650C12B6D764}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0F4DD3B-A36D-48AB-938B-E93F7506AD52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0F4DD3B-A36D-48AB-938B-E93F7506AD52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0F4DD3B-A36D-48AB-938B-E93F7506AD52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0F4DD3B-A36D-48AB-938B-E93F7506AD52}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {116289F1-627A-43F5-97FC-81ACE3E1E76E}
+	EndGlobalSection
+EndGlobal

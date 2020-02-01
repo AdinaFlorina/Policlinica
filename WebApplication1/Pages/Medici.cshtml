@@ -1,0 +1,46 @@
+﻿@page
+@using System.Data
+@model Policlinica.MediciModel
+
+@{
+    ViewData["Title"] = "Medici";
+}
+
+<h1>Medici</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        @if (Model.Med != null)
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        @foreach (var item in Model.Med.Columns)
+                        {
+                            <td>
+                                @item.ToString()
+                            </td>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow rand in Model.Med.Rows)
+                    {
+                        <tr>
+                            @foreach (var col in rand.ItemArray)
+                            {
+                                <td>
+                                    @col.ToString();
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h1 class="text-danger">Eroare de preluare a datelor</h1>
+        }
+    </div>
+</div>

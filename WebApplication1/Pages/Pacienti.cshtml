@@ -1,0 +1,21 @@
+﻿@page
+@using Policlinica.Models
+@model Policlinica.Pages.PacientiModel
+@{
+    ViewData["Title"] = "Pacienti";
+}
+
+<h1>Pacienti</h1>
+<div class="container-fluid">
+    <div class="row">
+        @foreach (Pacient p in Model.Pacienti)
+        {
+        <div class="col-xs-12 col-md-6">
+            <h3>@p.NUME @p.PRENUME</h3>
+            <p>@p.CNP</p>
+            <p>@p.DATA_NASTERII</p>
+            <p > @p.ASIGURARE_MEDICALA</p>
+        </div>
+        }
+    </div>
+</div>

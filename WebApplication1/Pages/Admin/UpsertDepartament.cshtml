@@ -1,0 +1,67 @@
+﻿@page
+@model Policlinica.UpsertDepartamentModel
+@{
+    ViewData["Title"] = "UpsertDepartament";
+}
+<div class="container-fluid">
+    <h1>Departamente Policlinica</h1>
+    <div class="row">
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Departament nou</button>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <form method="post" asp-page-handler="New">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Adauga Departament</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <label asp-for="@Model.DepNou.ID_DEPARTAMENTE"></label>
+                                <input asp-for="@Model.DepNou.ID_DEPARTAMENTE" />
+                            </div>
+                            <div class="row">
+
+                                <label asp-for="@Model.DepNou.DENUMIRE"></label>
+                                <input asp-for="@Model.DepNou.DENUMIRE" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input class="btn btn-success" type="submit" value="Salveaza" />
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @if(Model.Departamente !=null)
+        {
+            @foreach (Departament d in Model.Departamente)
+            {
+                <div class="col-ms-4" style="padding:5px;">
+                    <form method="post">
+                        <input type="hidden" name="id" asp-for="@d.ID_DEPARTAMENTE" />
+                        <label asp-for="@d.DENUMIRE"></label>
+                        <input class="form-control" name="denumire" value="@d.DENUMIRE" />
+                        <input class ="btn btn-success"type="submit" value="Salveaza" />
+                    </form>
+                    <form method="post" asp-page-handler="Delete">
+                        <input type="hidden" name="id" asp-for="@d.ID_DEPARTAMENTE" />
+                        <input class="btn btn-danger" type="submit" value="Sterge" />
+                    </form>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+
+
