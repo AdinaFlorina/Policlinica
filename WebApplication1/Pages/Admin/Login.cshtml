@@ -1,0 +1,14 @@
+﻿@page
+@model Policlinica.Pages.Admin.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<form asp-antiforgery="true" method="post">
+    User name: <input asp-for="@Model.user.UserName" name="username" type="text" />
+    Password: <input asp-for="@Model.user.Password" name="password" type="password" />
+    <input name="submit" value="Login" type="submit" />
+    <input type="hidden" name="returnUrl" value="@TempData["returnUrl"]" />
+</form>

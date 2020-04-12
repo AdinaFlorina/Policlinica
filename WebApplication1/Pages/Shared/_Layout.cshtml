@@ -34,18 +34,41 @@
                             <a class="nav-link text-dark" asp-page="/Pacienti">Pacienti</a>
                         </li>
                         <!-- Dropdown -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                Administrare
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-page="/Admin/UpsertDepartament">Administrare departamente</a>
-                                <a class="dropdown-item" asp-page="/Admin/UpsertMedici">Administrare personal medical</a>
-                                <a class="dropdown-item" asp-page="/Admin/UpsertPacienti">Administrare pacienti</a>
-                            </div>
-                        </li>
+                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Medic") || User.IsInRole("Admin")))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                    Administrare
+                                </a>
+                                <div class="dropdown-menu">
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <a class="dropdown-item" asp-page="/Admin/UpsertDepartament">Administrare departamente</a>
+                                        <a class="dropdown-item" asp-page="/Admin/UpsertMedici">Administrare personal medical</a>
+                                    }
+
+                                    <a class="dropdown-item" asp-page="/Admin/UpsertPacienti">Administrare pacienti</a>
+                                </div>
+                            </li>
+                        }
                     </ul>
                 </div>
+
+
+
+
+
+                <div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="btn btn-info" asp-page="/Admin/Logout">Logout @User.Identity.Name</a>
+                    }
+                    else
+                    {
+                       <a class="btn btn-primary" asp-page="/Admin/Login">Login</a>
+                    }
+                </div>
+
             </div>
         </nav>
     </header>

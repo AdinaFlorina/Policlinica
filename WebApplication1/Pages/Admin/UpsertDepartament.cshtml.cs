@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Oracle.ManagedDataAccess.Client;
@@ -9,6 +10,7 @@ using Policlinica.Models;
 
 namespace Policlinica
 {
+    [Authorize(Roles = "Admin")]
     public class UpsertDepartamentModel : PageModel
     {
         public List<Departament> Departamente { get; set; }
