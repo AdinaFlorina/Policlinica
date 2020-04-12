@@ -17,6 +17,5 @@ namespace Policlinica.Models
         [Display(Name = "Denumire departament")]
         [Required]
         public string  DENUMIRE { get; set; }
-        public decimal? ID_MEDICI { get; set; }
     }
 }

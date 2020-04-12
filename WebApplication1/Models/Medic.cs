@@ -25,7 +25,9 @@ namespace Policlinica.Models
         public DateTime DATA_NASTERII  { get; set; }
         public DateTime DATA_ANGAJARII { get; set; }
         public string ADRESA { get; set; }
-        public decimal? ID_PACIENTI { get; set; }
+        public decimal? ID_DEPARTAMENTE { get; set; }
+
+        public int ID_UTILIZATOR { get; set; }
 
     }
 }

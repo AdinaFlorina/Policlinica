@@ -22,7 +22,7 @@ namespace Policlinica
     departamente.denumire as Departament
 FROM
     departamente
-    INNER JOIN medici ON medici.id_medici = departamente.id_medici";
+    INNER JOIN medici ON medici.ID_DEPARTAMENTE = departamente.ID_DEPARTAMENTE";
             OracleDataAdapter da = new OracleDataAdapter(query, cn);
             DataTable dt = new DataTable();
             da.Fill(dt);

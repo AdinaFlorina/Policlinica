@@ -97,9 +97,8 @@ namespace Policlinica
             try
             {
                 oracleConnection.Open();
-                string query = @"INSERT INTO pacienti (ID_PACIENTI, NUME, PRENUME) VALUES( :id, :nume , :prenume)";
+                string query = @"INSERT INTO pacienti (NUME, PRENUME) VALUES(:nume , :prenume)";
                 OracleCommand cmd = new OracleCommand(query, oracleConnection);
-                cmd.Parameters.Add("@id", PacNou.ID_PACIENTI);
                 cmd.Parameters.Add("@nume", PacNou.NUME);
                 cmd.Parameters.Add("@prenume", PacNou.PRENUME);
                 cmd.ExecuteNonQuery();

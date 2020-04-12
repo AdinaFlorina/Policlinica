@@ -40,9 +40,9 @@ namespace Policlinica
                 oracleConnection.Close();
             }
         }
-        
+
         public IActionResult OnPost(string id, string denumire)
-          
+
         {
             OracleConnection oracleConnection = new OracleConnection(StaticDetails.ConnectionString.CS);
             try
@@ -74,7 +74,7 @@ namespace Policlinica
                 cmd.ExecuteNonQuery();
                 oracleConnection.Close();
             }
-            catch (Exception )
+            catch (Exception)
             {
                 oracleConnection.Close();
                 return RedirectToPage("/Error");
@@ -95,14 +95,13 @@ namespace Policlinica
             try
             {
                 oracleConnection.Open();
-                string query = @"INSERT INTO departamente (ID_DEPARTAMENTE, DENUMIRE) VALUES( :id, :denumire)";
+                string query = @"INSERT INTO departamente (DENUMIRE) VALUES(:denumire)";
                 OracleCommand cmd = new OracleCommand(query, oracleConnection);
-                cmd.Parameters.Add("@id", DepNou.ID_DEPARTAMENTE);
                 cmd.Parameters.Add("@denumire", DepNou.DENUMIRE);
                 cmd.ExecuteNonQuery();
                 oracleConnection.Close();
             }
-            catch (Exception )
+            catch (Exception)
             {
                 oracleConnection.Close();
                 return RedirectToPage("/Error");
@@ -111,4 +110,3 @@ namespace Policlinica
         }
     }
 }
-        

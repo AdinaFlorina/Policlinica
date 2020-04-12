@@ -21,13 +21,8 @@
                             <h4 class="modal-title">Adauga Departament</h4>
                         </div>
                         <div class="modal-body">
-
+                            <input type="hidden" asp-for="@Model.DepNou.ID_DEPARTAMENTE" />
                             <div class="row">
-                                <label asp-for="@Model.DepNou.ID_DEPARTAMENTE"></label>
-                                <input asp-for="@Model.DepNou.ID_DEPARTAMENTE" />
-                            </div>
-                            <div class="row">
-
                                 <label asp-for="@Model.DepNou.DENUMIRE"></label>
                                 <input asp-for="@Model.DepNou.DENUMIRE" />
                             </div>
@@ -42,7 +37,7 @@
         </div>
     </div>
     <div class="row">
-        @if(Model.Departamente !=null)
+        @if (Model.Departamente != null)
         {
             @foreach (Departament d in Model.Departamente)
             {
@@ -51,7 +46,7 @@
                         <input type="hidden" name="id" asp-for="@d.ID_DEPARTAMENTE" />
                         <label asp-for="@d.DENUMIRE"></label>
                         <input class="form-control" name="denumire" value="@d.DENUMIRE" />
-                        <input class ="btn btn-success"type="submit" value="Salveaza" />
+                        <input class="btn btn-success" type="submit" value="Salveaza" />
                     </form>
                     <form method="post" asp-page-handler="Delete">
                         <input type="hidden" name="id" asp-for="@d.ID_DEPARTAMENTE" />

@@ -14,6 +14,7 @@ namespace Policlinica
     public class UpsertMediciModel : PageModel
     {
         public List<Medic> Medici { get; set; }
+        public List<Departament> Departamente { get; set; } = new List<Departament>();
         public void OnGet()
         {
             Medici = new List<Medic>();
@@ -34,6 +35,22 @@ namespace Policlinica
                         Medici.Add(m);
                     }
                 }
+
+
+                query = "Select * from Departamente";
+                using (OracleDataReader dataReader = new OracleCommand(query, oracleConnection).ExecuteReader())
+                {
+                    while (dataReader.Read())
+                    {
+                        Departamente.Add(new Departament
+                        {
+                            ID_DEPARTAMENTE = (decimal)dataReader["ID_DEPARTAMENTE"],
+                            DENUMIRE = dataReader["DENUMIRE"].ToString()
+                        });
+                    }
+                }
+
+
                 oracleConnection.Close();
             }
             catch (Exception)
@@ -87,6 +104,8 @@ namespace Policlinica
         }
         [BindProperty]
         public Medic MedNou { get; set; }
+        [BindProperty]
+        public Utilizator user { get; set; }
         public IActionResult OnPostNew()
         {
             if (MedNou == null)
@@ -97,11 +116,24 @@ namespace Policlinica
             try
             {
                 oracleConnection.Open();
-                string query = @"INSERT INTO medici (ID_MEDICI, NUME, PRENUME) VALUES( :id, :nume , :prenume)";
+
+                using (var db = new NPoco.Database(oracleConnection))
+                {
+                    db.Insert(user);
+                }
+
+
+                string query = @"INSERT INTO medici (NUME ,PRENUME ,CNP ,DATA_NASTERII ,DATA_ANGAJARE ,ADRESA , ID_DEPARTAMENTE, ID_UTILIZATOR) VALUES( :nume , :prenume, :cnp, :nastere, :angajare, :adresa, :departament, :utilizator)";
                 OracleCommand cmd = new OracleCommand(query, oracleConnection);
-                cmd.Parameters.Add("@id", MedNou.ID_MEDICI);
                 cmd.Parameters.Add("@nume", MedNou.NUME);
                 cmd.Parameters.Add("@prenume", MedNou.PRENUME);
+                cmd.Parameters.Add("@cnp", MedNou.CNP);
+                cmd.Parameters.Add("@nastere", MedNou.DATA_NASTERII);
+                cmd.Parameters.Add("@angajare", MedNou.DATA_ANGAJARII);
+                cmd.Parameters.Add("@adresa", MedNou.ADRESA);
+                cmd.Parameters.Add("@departament", MedNou.ID_DEPARTAMENTE);
+                cmd.Parameters.Add("@utilizator", 23);
+
                 cmd.ExecuteNonQuery();
                 oracleConnection.Close();
             }
