@@ -15,7 +15,7 @@ namespace Policlinica
         public void OnGet()
         {
 
-            OracleConnection cn = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)));User Id=c##policlinica;Password=1234;");
+            OracleConnection cn = new OracleConnection(StaticDetails.ConnectionString.CS);
             cn.Open();
             string query = @"SELECT
      medici.nume || ' ' || medici.prenume as ""Numele si prenumele"",
