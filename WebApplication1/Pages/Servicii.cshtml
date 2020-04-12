@@ -4,8 +4,9 @@
 @{
     ViewData["Title"] = "Servicii";
 }
-
-<h1>Servicii</h1>
+<div>
+<h1 class="text-center" >Servicii</h1>
+ </div>
 <div class="container-fluid">
     <div class="row">
             @if (Model.Dep !=null)
@@ -25,10 +26,10 @@
                         @foreach (DataRow rand in Model.Dep.Rows)
                         {
                             <tr>
-                            @foreach (var col in rand.ItemArray)
+                            @foreach (var cell in rand.ItemArray)
                             {
                                 <td>
-                                    @col.ToString();
+                                    @cell.ToString()
                                 </td>
                             }
                             </tr>

@@ -9,26 +9,27 @@ using Policlinica.Models;
 
 namespace Policlinica
 {
-    public class UpsertDepartamentModel : PageModel
+    public class UpsertPacientiModel : PageModel
     {
-        public List<Departament> Departamente { get; set; }
+        public List<Pacient> Pacienti { get; set; }
         public void OnGet()
         {
-            Departamente = new List<Departament>();
+            Pacienti = new List<Pacient>();
             OracleConnection oracleConnection = new OracleConnection(StaticDetails.ConnectionString.CS);
             try
             {
                 oracleConnection.Open();
-                string query = "Select * from Departamente";
+                string query = "Select * from Pacienti";
                 using (OracleDataReader dataReader = new OracleCommand(query, oracleConnection).ExecuteReader())
                 {
                     while (dataReader.Read())
                     {
-                        Departament d = new Departament();
-                        d.ID_DEPARTAMENTE = (decimal)dataReader["ID_DEPARTAMENTE"];
-                        d.DENUMIRE = dataReader["DENUMIRE"].ToString();
+                        Pacient p = new Pacient();
+                        p.ID_PACIENTI = (decimal)dataReader["ID_PACIENTI"];
+                        p.NUME = dataReader["NUME"].ToString();
+                        p.PRENUME = dataReader["PRENUME"].ToString();
 
-                        Departamente.Add(d);
+                        Pacienti.Add(p);
                     }
                 }
                 oracleConnection.Close();
@@ -38,18 +39,67 @@ namespace Policlinica
                 oracleConnection.Close();
             }
         }
-        
-        public IActionResult OnPost(string id, string denumire)
-          
+
+        public IActionResult OnPost(string id, string nume, string prenume)
+
         {
             OracleConnection oracleConnection = new OracleConnection(StaticDetails.ConnectionString.CS);
             try
             {
                 oracleConnection.Open();
-                string query = "UPDATE departamente SET DENUMIRE = :denumire WHERE ID_DEPARTAMENTE = :id";
+                string query = "UPDATE pacienti SET NUME = :nume, PRENUME =:prenume WHERE ID_PACIENTI = :id";
                 OracleCommand cmd = new OracleCommand(query, oracleConnection);
-                cmd.Parameters.Add("@denumire", denumire);
+                cmd.Parameters.Add("@nume", nume);
+                cmd.Parameters.Add("@nume", prenume);
                 cmd.Parameters.Add("@id", id);
+                cmd.ExecuteNonQuery();
+                oracleConnection.Close();
+            }
+            catch (Exception )
+            {
+                oracleConnection.Close();
+                return RedirectToPage("/Error");
+            }
+            return RedirectToPage("/admin/upsertpacienti");
+        }
+        public IActionResult OnPostDelete(string id)
+        {
+            OracleConnection oracleConnection = new OracleConnection(StaticDetails.ConnectionString.CS);
+            try
+            {
+                oracleConnection.Open();
+                string query = @"DELETE from pacienti WHERE ID_PACIENTI = :id";
+                OracleCommand cmd = new OracleCommand(query, oracleConnection);
+                cmd.Parameters.Add("@id", id);
+                cmd.ExecuteNonQuery();
+                oracleConnection.Close();
+            }
+            catch (Exception )
+            {
+                oracleConnection.Close();
+                return RedirectToPage("/Error");
+            }
+            return RedirectToPage("/admin/upsertpacienti");
+
+
+        }
+        [BindProperty]
+        public Pacient PacNou { get; set; }
+        public IActionResult OnPostNew()
+        {
+            if (PacNou == null)
+            {
+                return RedirectToPage("/Error");
+            }
+            OracleConnection oracleConnection = new OracleConnection(StaticDetails.ConnectionString.CS);
+            try
+            {
+                oracleConnection.Open();
+                string query = @"INSERT INTO pacienti (ID_PACIENTI, NUME, PRENUME) VALUES( :id, :nume , :prenume)";
+                OracleCommand cmd = new OracleCommand(query, oracleConnection);
+                cmd.Parameters.Add("@id", PacNou.ID_PACIENTI);
+                cmd.Parameters.Add("@nume", PacNou.NUME);
+                cmd.Parameters.Add("@prenume", PacNou.PRENUME);
                 cmd.ExecuteNonQuery();
                 oracleConnection.Close();
             }
@@ -58,55 +108,7 @@ namespace Policlinica
                 oracleConnection.Close();
                 return RedirectToPage("/Error");
             }
-            return RedirectToPage("/admin/upsertdepartament");
-        }
-        public IActionResult OnPostDelete(string id)
-        {
-            OracleConnection oracleConnection = new OracleConnection(StaticDetails.ConnectionString.CS);
-            try
-            {
-                oracleConnection.Open();
-                string query = @"DELETE from departamente WHERE ID_DEPARTAMENTE = :id";
-                OracleCommand cmd = new OracleCommand(query, oracleConnection);
-                cmd.Parameters.Add("@id", id);
-                cmd.ExecuteNonQuery();
-                oracleConnection.Close();
-            }
-            catch (Exception )
-            {
-                oracleConnection.Close();
-                return RedirectToPage("/Error");
-            }
-            return RedirectToPage("/admin/upsertdepartament");
-
-
-        }
-        [BindProperty]
-        public Departament DepNou { get; set; }
-        public IActionResult OnPostNew()
-        {
-            if (DepNou == null)
-            {
-                return RedirectToPage("/Error");
-            }
-            OracleConnection oracleConnection = new OracleConnection(StaticDetails.ConnectionString.CS);
-            try
-            {
-                oracleConnection.Open();
-                string query = @"INSERT INTO departamente (ID_DEPARTAMENTE, DENUMIRE) VALUES( :id, :denumire)";
-                OracleCommand cmd = new OracleCommand(query, oracleConnection);
-                cmd.Parameters.Add("@id", DepNou.ID_DEPARTAMENTE);
-                cmd.Parameters.Add("@denumire", DepNou.DENUMIRE);
-                cmd.ExecuteNonQuery();
-                oracleConnection.Close();
-            }
-            catch (Exception )
-            {
-                oracleConnection.Close();
-                return RedirectToPage("/Error");
-            }
-            return RedirectToPage("/admin/upsertdepartament");
+            return RedirectToPage("/admin/upsertpacienti");
         }
     }
 }
-        

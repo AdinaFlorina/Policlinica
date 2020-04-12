@@ -17,7 +17,7 @@ namespace Policlinica
         {
             OracleConnection cn = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)));User Id=c##policlinica;Password=1234;");
             cn.Open();
-            string query = "Select * from Departamente";
+            string query = "Select denumire from Departamente";
             OracleDataAdapter da = new OracleDataAdapter(query, cn);
             DataTable dt = new DataTable();
             da.Fill(dt);

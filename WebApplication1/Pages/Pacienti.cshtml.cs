@@ -40,7 +40,7 @@ namespace Policlinica.Pages
                 }
                 oracleConnection.Close();
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 oracleConnection.Close();
             }

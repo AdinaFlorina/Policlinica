@@ -11,10 +11,10 @@
         @foreach (Pacient p in Model.Pacienti)
         {
         <div class="col-xs-12 col-md-6">
-            <h3>@p.NUME @p.PRENUME</h3>
-            <p>@p.CNP</p>
-            <p>@p.DATA_NASTERII</p>
-            <p > @p.ASIGURARE_MEDICALA</p>
+            <h5>Nume si Prenume:@p.NUME @p.PRENUME</h5>
+            <p>CNP:@p.CNP</p>
+            <p>Data nasterii:@p.DATA_NASTERII</p>
+            <p >Asigurare medicala: @p.ASIGURARE_MEDICALA</p>
         </div>
         }
     </div>

@@ -1,0 +1,73 @@
+﻿@page
+@model Policlinica.UpsertMediciModel
+@{
+    ViewData["Title"] = "UpsertMedici";
+}
+
+    <div class="container-fluid">
+        <h1>Medici Policlinica</h1>
+        <div class="row">
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Medic nou</button>
+
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <form method="post" asp-page-handler="New">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Adauga Medic</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="row">
+                                    <label asp-for="@Model.MedNou.ID_MEDICI"></label>
+                                    <input asp-for="@Model.MedNou.ID_MEDICI" />
+                                </div>
+                                <div class="row">
+
+                                    <label asp-for="@Model.MedNou.NUME"></label>
+                                    <input asp-for="@Model.MedNou.NUME" />
+                                </div>
+                                <div class="row">
+
+                                    <label asp-for="@Model.MedNou.PRENUME"></label>
+                                    <input asp-for="@Model.MedNou.PRENUME" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input class="btn btn-success" type="submit" value="Salveaza" />
+                                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @if (Model.Medici != null)
+            {
+                @foreach (Medic m in Model.Medici)
+                {
+                    <div class="col-ms-4" style="padding:5px;">
+                        <form method="post">
+                            <input type="hidden" name="id" asp-for="@m.ID_MEDICI" />
+                            <label asp-for="@m.NUME"></label>
+                            <input class="form-control" name="denumire" value="@m.NUME" />
+                            <label asp-for="@m.PRENUME"></label>
+                            <input class="form-control" name="denumire" value="@m.PRENUME" />
+                            <input class="btn btn-success" type="submit" value="Salveaza" />
+                        </form>
+                        <form method="post" asp-page-handler="Delete">
+                            <input type="hidden" name="id" asp-for="@m.ID_MEDICI" />
+                            <input class="btn btn-danger" type="submit" value="Sterge" />
+                        </form>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
