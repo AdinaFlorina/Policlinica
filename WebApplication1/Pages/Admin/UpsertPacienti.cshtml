@@ -12,24 +12,70 @@
 
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
 
                 <!-- Modal content-->
                 <div class="modal-content">
                     <form method="post" asp-page-handler="New">
+                        <input type="hidden" asp-for="@Model.PacNou.ID_PACIENTI" />
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title">Adauga Pacient</h4>
                         </div>
                         <div class="modal-body">
-                            <input type="hidden" asp-for="@Model.PacNou.ID_PACIENTI" />
+
                             <div class="row">
-                                <label asp-for="@Model.PacNou.NUME"></label>
-                                <input asp-for="@Model.PacNou.NUME" />
+                                <div class="col-6">
+                                    <label asp-for="@Model.PacNou.NUME"></label>
+                                    <input class="form-control" asp-for="@Model.PacNou.NUME" />
+                                </div>
+
+                                <div class="col-6">
+                                    <label asp-for="@Model.PacNou.PRENUME"></label>
+                                    <input class="form-control" asp-for="@Model.PacNou.PRENUME" />
+                                </div>
                             </div>
                             <div class="row">
-                                <label asp-for="@Model.PacNou.PRENUME"></label>
-                                <input asp-for="@Model.PacNou.PRENUME" />
+                                <div class="col-6">
+                                    <label asp-for="@Model.PacNou.CNP"></label>
+                                    <input class="form-control" asp-for="@Model.PacNou.CNP" />
+                                </div>
+
+
+                                <div class="col-6">
+                                    <label asp-for="@Model.PacNou.DATA_NASTERII"></label>
+                                    <input class="form-control" type="date" asp-for="@Model.PacNou.DATA_NASTERII" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <label asp-for="@Model.PacNou.ADRESA"></label>
+                                    <input class="form-control" asp-for="@Model.PacNou.ADRESA" />
+                                </div>
+                                <div class="col-6">
+                                    <label asp-for="@Model.PacNou.ASIGURARE_MEDICALA"></label>
+                                    <input class="form-control" asp-for="@Model.PacNou.ASIGURARE_MEDICALA" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    @if (HttpContext.User.IsInRole("Medic"))
+                                    {
+                                    <input class="form-control" type="hidden" asp-for="@Model.PacNou.ID_MEDICI" value="@Model.Medici.Id" />
+                                    }
+                                    else
+                                    {
+                                    <label>Medic</label>
+                                    <select class="form-control" asp-for="@Model.PacNou.ID_MEDICI">
+                                        @foreach (var item in Model.ListMedici)
+                                        {
+                                        <option class="form-control" value="@item.Id">@item.UserName</option>
+
+                                        }
+                                    </select>
+                                    }
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -44,23 +90,23 @@
     <div class="row">
         @if (Model.Pacienti != null)
         {
-            @foreach (Pacient p in Model.Pacienti)
-            {
-                <div class="col-ms-4" style="padding:5px;">
-                    <form method="post">
-                        <input type="hidden" name="id" asp-for="@p.ID_PACIENTI" />
-                        <label asp-for="@p.NUME"></label>
-                        <input class="form-control" name="denumire" value="@p.NUME" />
-                        <label asp-for="@p.PRENUME"></label>
-                        <input class="form-control" name="denumire" value="@p.PRENUME" />
-                        <input class="btn btn-success" type="submit" value="Salveaza" />
-                    </form>
-                    <form method="post" asp-page-handler="Delete">
-                        <input type="hidden" name="id" asp-for="@p.ID_PACIENTI" />
-                        <input class="btn btn-danger" type="submit" value="Sterge" />
-                    </form>
-                </div>
-            }
+        @foreach (Pacient m in Model.Pacienti)
+        {
+        <div class="col-sm-4" style="padding:5px;">
+            <form method="post">
+                <input type="hidden" name="id" asp-for="@m.ID_PACIENTI" />
+                <label asp-for="@m.NUME"></label>
+                <input class="form-control" name="nume" value="@m.NUME" />
+                <label asp-for="@m.PRENUME"></label>
+                <input class="form-control" name="prenume" value="@m.PRENUME" />
+                <input class="btn btn-success" type="submit" value="Salveaza" />
+            </form>
+            <form method="post" asp-page-handler="Delete">
+                <input type="hidden" name="id" asp-for="@m.ID_PACIENTI" />
+                <input class="btn btn-danger" type="submit" value="Sterge" />
+            </form>
+        </div>
+        }
         }
     </div>
 </div>

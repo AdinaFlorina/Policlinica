@@ -27,5 +27,6 @@ namespace Policlinica.Models
         public string ASIGURARE_MEDICALA { get; set; }
         public decimal? ID_AFECTIUNI { get; set; }
         public decimal? ID_TRATAMENTE { get; set; }
+        public decimal? ID_MEDICI { get; set; }
     }
 }

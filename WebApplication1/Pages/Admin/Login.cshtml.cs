@@ -74,7 +74,7 @@ namespace Policlinica.Pages.Admin
                 return Redirect(returnUrl);
             }
 
-            return RedirectToPage("/Admin/Index");
+            return RedirectToPage("/Index");
         }
     }
 }

@@ -6,14 +6,79 @@
     <title>@ViewData["Title"] - Policlinica</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
+        <nav1 class="navbar border-bottom active box-shadow">
+            <div class="alert align-items-lg-end" style="margin-top: 25px;">
+                <h6><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAB+0lEQVRIS+WW4TEEQRCF30VABogAESACRIAIEAEyIAJEgAgQASIgBCKgvqrprb7Z3pnZq1V+6Kqtu5qd6dev+3XPzvRHNvsjXE0BfCjpW9KHpOdWIlMAP0nacoD3kq4ksT5oJWCYXEu6kXRU8JED21bW9yV9RmeHgAE7cAdq4MuSttNDwEvp7GsKmt85i4BJ1W4Q5amky4YaEgT7LHBAd3LmOTBRPxack3LYezOGCMszO5d0ljaSdsA7GwvMwRzc1xhlU1cLwJcM4E5wOfCGpJeGdG4655G47D1pJxhq/iBpz3xHNaYna5bXm4BxaqkFbC05od7H6X+HFwGTpvUC8ltSb9Qmvq7GmoDukr8u3RFw3ko+hhIo+3ypLCurkt6Tk04fEbCPcAyo7TUBQcA6oLc2NEBIow0Bc+gFVdNA9f0QsK+VObmQxPokNgRMXRCZZ00WUGo4eyXROqiXtumNyDza0iURsQ7HXwJl4iGuaMj0slS7FqPWYo3pRK9iMPWgBhKN1y6AGnCUcg6TbgYDaeXqNKY5M7KGNkYzzntzEWGFV2qNsQHBiF7MW6w1kB54K7Axx0FpnA4F8pW00FzjyBF1OxnJvie0MYx9ECgZ8JYAbiXxsTBniwJ7J8x2Hr5eVjL/c3ewfzcFcE4GIZIRbPAT9zeAm5T+/4B/AIvwZx+q6okGAAAAAElFTkSuQmCC" />Call Center <span>0264 000 000</span></h6>
+            </div>
+            <h3>Luptăm împreună împotriva răspândirii epidemiei COVID-19 încă din prima zi!</h3>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a class="btn btn-hover" asp-page="/Admin/Logout">Logout @User.Identity.Name</a>
+            }
+            else
+            {
+                <a class="btn btn-hover" asp-page="/Admin/Login">Login</a>
+            }
+
+        </nav1>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-page="/Index">
-                    <img src="~/img//logo-100.jpg" />
-                    Policlinica GreenLife
+
+                    <img src="~/img//logo-100.jpg" /><span> Policlinica GreenLife</span>
+                    <style>
+                        nav1 {
+                            padding-bottom: 8px;
+                            background-color: cadetblue;
+                            padding-top: 8px;
+                            padding-left: 16px;
+                            padding-right: 16px;
+                        }
+
+                        .body {
+                            background-color: #f7f7f7;
+                        }
+
+                        .btn-hover {
+                            background-color: #4CAF50; /* Green */
+                            color: white;
+                        }
+
+                            .btn-hover:hover {
+                                background-color: darkcyan;
+                                color: white;
+                            }
+
+                        h5 {
+                            color: #A5DF00;
+                            border-top: medium;
+                            padding-left: 10px;
+                        }
+
+                        span {
+                            color: #A5DF00;
+                            border-top: medium;
+                            text-shadow: inherit;
+                        }
+
+                        .fa {
+                            padding: 20px;
+                            font-size: 30px;
+                            width: 30px;
+                            text-align: center;
+                            text-decoration: none;
+                            margin: 5px 2px;
+                            border-radius: 50%;
+                        }
+
+                            .fa:hover {
+                                opacity: 0.7;
+                            }
+                    </style>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -22,16 +87,24 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Pagina Principala</a>
+                            <h5>  <a class="nav-link text-dark" asp-area="" asp-page="/Index">Despre noi</a></h5>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Servicii">Servicii</a>
+                            <h5><a class="nav-link text-dark" asp-page="/Servicii">Servicii</a></h5>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Medici">Medici</a>
+                            <h5><a class="nav-link text-dark" asp-page="/Medici">Medici</a></h5>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Pacienti">Pacienti</a>
+                            <h5><a class="nav-link text-dark" asp-page="/Pacienti">Pacienti</a></h5>
+                        </li>
+                        <li class="nav-item">
+                            <script>
+                                function scrollDown() {
+                                    $('html, body').animate({scrollTop: $("footer").offset().top}, 200);
+                                }
+                            </script>
+                            <h5><a class="nav-link text-dark" href="#" onclick="javascript:scrollDown();">Contact</a></h5>
                         </li>
                         <!-- Dropdown -->
                         @if (User.Identity.IsAuthenticated && (User.IsInRole("Medic") || User.IsInRole("Admin")))
@@ -53,27 +126,72 @@
                         }
                     </ul>
                 </div>
-
-
-
-
-
-                <div>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <a class="btn btn-info" asp-page="/Admin/Logout">Logout @User.Identity.Name</a>
-                    }
-                    else
-                    {
-                       <a class="btn btn-primary" asp-page="/Admin/Login">Login</a>
-                    }
-                </div>
-
             </div>
+
+
         </nav>
     </header>
-       @RenderBody()
-    <footer class="border-top footer text-muted">
+    @RenderBody()
+    <footer class="container-fluid bg-4" id="my-footer">
+        <style>
+            .bg-4 {
+                background-color: #f7f7f7;
+                color: darkslategray;
+            }
+
+            #rcorners2 {
+                border-radius: 15px / 50px;
+                background: white;
+                padding: 40px;
+                width: 300px;
+                height: 200px;
+            }
+
+            #rcorners3 {
+                border-radius: 25px / 50px;
+                background: white;
+                padding: 40px;
+                width: 600px;
+                height: 300px;
+                background-color: darkcyan;
+            }
+        </style>
+
+        <!-- Container (Contact Section) -->
+        <div class="container-fluid bg-grey">
+            <br />
+            <h4 class="text-center">Informații de contact</h4>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-sm-5">
+                    <h5>Policlinica GreenLife</h5>
+                    <div id="rcorners2">
+                        <p><span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAB80lEQVRIS+WWPVIVURCFvxdhpqxAXYEYkfmzAjXFAI0MxcJczbXU0EgNJFVXgJAZqTuAHUAGmfVZ3VWX59y586akxoLOZuZ2n+7Tt0/PjIlsNhEuY4GvAOuR9Edgb9ECxgLfArYD7Dbw7cwCPwBuAlYs3Zo0W/EX4OvQyodSfRd4XYDV4pvEk0iiN4chwG+Ax0WUw6jwZ7xbCQYuFmf0MYGqtYBLUAE3gA+VaLbB85nA2zjfebwPWHo/h9cvwOfW2Nh3e30t/O7VaO8DFuQyYKXSmaBrwCNgNYJ/B94BW/EsuG2wcn2udpVcA5a29+HwsKD3JbBZofoV8DS+lf6dVdeApetOVHspglnpp8a43C8qP4iqVTYTOWElsBRJreYF8tm5tLfaDnCjAbwbc+6xTF66E3g/W1YCPweezQV+AfheOwKWGsDHwIU40xvvvwCW2pRBqZb2f0G19CbV0v5nOlqXywuyfNqXq2zfZONkEikgVn19QQH5ATiG0pztq47T/IUtJVMlUgiGSKYyq9JpoyRTx3JJWLlLQkHoMtvj6kzBGb0kMvj8WjQBF//8WkxA/XpB+251F+0mkMpW0xF7KiuqVq+19nFXAvbeX59MQrD89WkCZsBFgdPv/PxlZsXOZsqg8toas7/6PZbq1t1pfp8M+Dcd7XwfioyAIQAAAABJRU5ErkJggg==" /></span> Cluj Napoca, România</p>
+                        <p><span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAB+0lEQVRIS+WW4TEEQRCF30VABogAESACRIAIEAEyIAJEgAgQASIgBCKgvqrprb7Z3pnZq1V+6Kqtu5qd6dev+3XPzvRHNvsjXE0BfCjpW9KHpOdWIlMAP0nacoD3kq4ksT5oJWCYXEu6kXRU8JED21bW9yV9RmeHgAE7cAdq4MuSttNDwEvp7GsKmt85i4BJ1W4Q5amky4YaEgT7LHBAd3LmOTBRPxack3LYezOGCMszO5d0ljaSdsA7GwvMwRzc1xhlU1cLwJcM4E5wOfCGpJeGdG4655G47D1pJxhq/iBpz3xHNaYna5bXm4BxaqkFbC05od7H6X+HFwGTpvUC8ltSb9Qmvq7GmoDukr8u3RFw3ko+hhIo+3ypLCurkt6Tk04fEbCPcAyo7TUBQcA6oLc2NEBIow0Bc+gFVdNA9f0QsK+VObmQxPokNgRMXRCZZ00WUGo4eyXROqiXtumNyDza0iURsQ7HXwJl4iGuaMj0slS7FqPWYo3pRK9iMPWgBhKN1y6AGnCUcg6TbgYDaeXqNKY5M7KGNkYzzntzEWGFV2qNsQHBiF7MW6w1kB54K7Axx0FpnA4F8pW00FzjyBF1OxnJvie0MYx9ECgZ8JYAbiXxsTBniwJ7J8x2Hr5eVjL/c3ewfzcFcE4GIZIRbPAT9zeAm5T+/4B/AIvwZx+q6okGAAAAAElFTkSuQmCC" /></span> +04 755555555</p>
+                        <p><span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAABeklEQVRIS+2W4TEEQRCF30VACEIgAmQgA0TgROBkQASIgAyQARm4DIjA1Xc1rdrUzmzP1p714+bf7s701+9199TONNGaTcTVFvxnzpes3pV0J+lkpEw+JF1Lurd4JfCLpMORoD7MgaQ3XpTA3273u6SngUng3IU7i+pFFMw+LLqU9NmQwJGkR0nAbTWDOYhF52ZVTwKouurYEwbfStp39UYxyn+aJAuOOlSilvUlaZ4alecw2DbmCrqsz62lN86SQ9YzzWCyJTBNtpPUeOvzxB6SUuuJMJhxsqbytmIlcBs1AjOjlMNbm5ciDO5r3q7m8dbm56vgUif6IMeSzA1vfW7tRsEEx/q9wIhVFaPAxqBkNbWjpq0rXGMS8NemBy0HwMPgEvTXJdAg+/+Da7WmxlZnOrzmjpli8bhub3gZ+eeia08zW6kzjRaB2lHubS6addIRMNk+Z+DXNAE2033lBobS9U/AGOA+YPF7RPHg4LWDW/BGbO0KOpnVK9Qnax/uqse7AAAAAElFTkSuQmCC" /></span> greenlife@yahoo.com</p>
+                    </div>
+                </div>
+                <div class="col-sm-7" id="rcorners3">
+                    <form method="post" asp-page="/Servicii/Email">
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <input class="form-control" id="name" name="name" placeholder="Nume" type="text" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                            </div>
+                        </div>
+                        <textarea class="form-control" id="comments" name="comments" placeholder="Trimite un mesaj" rows="5"></textarea><br>
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <button class="btn btn-primary btn-hover" type="submit">Trimite</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="container text-center">
             &copy; 2020 - Policlinica GreenLife - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
